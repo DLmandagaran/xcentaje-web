@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Data | Feed de Actualizaciones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --post-bg: rgba(255, 255, 255, 0.03);
+            --post-hover: rgba(255, 255, 255, 0.07);
+        }
+
+        body {
+            background: radial-gradient(circle at top right, #1a0a14, #0a0a0c);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .public-data-header {
+            padding-top: 12rem;
+            padding-bottom: 4rem;
+            text-align: center;
+        }
+
+        .feed-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-bottom: 100px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* --- Publish Form --- */
+        .publish-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 24px;
+            margin-bottom: 4rem;
+            transition: var(--transition);
+        }
+
+        .publish-card:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.15);
+        }
+
+        .publish-card h2 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .publish-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.2rem;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            resize: none;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .publish-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .publish-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        /* --- Feed Items --- */
+        .post-card {
+            background: var(--post-bg);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            animation: slideIn 0.5s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .post-card:hover {
+            background: var(--post-hover);
+            transform: scale(1.01);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--accent), var(--accent-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .post-content {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            white-space: pre-wrap;
+        }
+
+        .post-date {
+            margin-left: auto;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .accent {
+            color: var(--accent);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            opacity: 1;
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar scrolled">
+        <div class="container">
+            <div class="logo">Xcentaje<span>.</span></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html#services">Servicios</a></li>
+                    <li><a href="index.html#reports">Informes</a></li>
+                    <li><a href="index.html#projects">Proyectos</a></li>
+                    <li><a href="index.html#contact" class="btn-primary">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="public-data-header">
+            <h1
+                style="font-size: clamp(3rem, 8vw, 5rem); font-family: var(--font-heading); margin-bottom: 1rem; line-height: 1;">
+                <span class="accent">Public</span> Data Feed
+            </h1>
+            <p style="color: var(--text-secondary); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
+                Espacio dedicado para compartir análisis, insights y actualizaciones clave del mercado.
+            </p>
+        </section>
+
+        <div class="feed-container">
+            <a href="index.html" class="back-btn">
+                <span>←</span> Volver al Inicio
+            </a>
+
+            <!-- Formulario de Publicación -->
+            <div class="publish-card">
+                <h2><span>✍️</span> ¿Qué quieres publicar hoy?</h2>
+                <textarea id="postInput" class="publish-input" rows="4"
+                    placeholder="Comparte tus hallazgos o ideas..."></textarea>
+                <div class="publish-actions">
+                    <button id="publishBtn" class="btn-primary">Publicar Ahora</button>
+                </div>
+            </div>
+
+            <div id="feed" class="feed">
+                <!-- Las publicaciones aparecerán aquí -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container" style="text-align: center; padding: 4rem 0;">
+            <p>&copy; 2026 Xcentaje. Diseño Premium Draft.</p>
+        </div>
+    </footer>
+
+    <script>
+        const postInput = document.getElementById('postInput');
+        const publishBtn = document.getElementById('publishBtn');
+        const feed = document.getElementById('feed');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPosts();
+        });
+
+        publishBtn.addEventListener('click', () => {
+            const content = postInput.value.trim();
+            if (content) {
+                // Detectar hashtags (palabras que empiezan con #)
+                const hashtags = content.match(/#\w+/g) || [];
+
+                const post = {
+                    id: Date.now(),
+                    content: content,
+                    hashtags: hashtags,
+                    date: new Date().toLocaleDateString('es-ES', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })
+                };
+
+                savePost(post);
+                addPostToDOM(post, true);
+                postInput.value = '';
+
+                publishBtn.innerText = '¡Publicado!';
+                setTimeout(() => {
+                    publishBtn.innerText = 'Publicar Ahora';
+                }, 2000);
+            }
+        });
+
+        function savePost(post) {
+            const posts = JSON.parse(localStorage.getItem('public_posts_main') || '[]');
+            posts.unshift(post);
+            localStorage.setItem('public_posts_main', JSON.stringify(posts));
+        }
+
+        function deletePost(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar esta publicación?')) {
+                let posts = JSON.parse(localStorage.getItem('public_posts_main') || '[]');
+                posts = posts.filter(p => p.id !== id);
+                localStorage.setItem('public_posts_main', JSON.stringify(posts));
+
+                const element = document.querySelector(`[data-id="${id}"]`);
+                element.style.opacity = '0';
+                element.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    element.remove();
+                    if (posts.length === 0) {
+                        feed.innerHTML = '<div class="empty-state">No hay publicaciones todavía. ¡Sé el primero en compartir algo!</div>';
+                    }
+                }, 300);
+            }
+        }
+
+        function loadPosts() {
+            const posts = JSON.parse(localStorage.getItem('public_posts_main') || '[]');
+            if (posts.length === 0) {
+                feed.innerHTML = '<div class="empty-state">No hay publicaciones todavía. ¡Sé el primero en compartir algo!</div>';
+            } else {
+                feed.innerHTML = '';
+                posts.forEach(post => addPostToDOM(post));
+            }
+        }
+
+        function addPostToDOM(post, isNew = false) {
+            if (feed.querySelector('.empty-state')) {
+                feed.innerHTML = '';
+            }
+
+            let displayContent = post.content;
+            if (post.hashtags) {
+                post.hashtags.forEach(tag => {
+                    displayContent = displayContent.replace(tag, `<span class="accent">${tag}</span>`);
+                });
+            }
+
+            const postElement = document.createElement('div');
+            postElement.className = 'post-card';
+            postElement.setAttribute('data-id', post.id);
+            postElement.innerHTML = `
+                <div class="post-meta">
+                    <div class="post-avatar">X</div>
+                    <div class="post-author">
+                        <strong>Analista Xcentaje</strong>
+                        <div style="font-size: 0.75rem; opacity: 0.7;">Verified Insight</div>
+                    </div>
+                    <div class="post-date">${post.date}</div>
+                    <button onclick="deletePost(${post.id})" style="background: none; border: none; color: #ff4b2b; cursor: pointer; font-size: 0.8rem; margin-left: auto; opacity: 0.5; transition: 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">Eliminar</button>
+                </div>
+                <div class="post-content">${displayContent}</div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 20px; font-size: 0.9rem; opacity: 0.6;">
+                    <span style="cursor: pointer;">💬 0 Comentarios</span>
+                    <span>📊 Market Insight</span>
+                    <span style="cursor: pointer;" onclick="toggleLike(this)">❤️ 0</span>
+                </div>
+            `;
+
+            if (isNew) {
+                feed.prepend(postElement);
+            } else {
+                feed.appendChild(postElement);
+            }
+        }
+
+        function toggleLike(element) {
+            const isLiked = element.innerText.includes('❤️ 1');
+            element.innerText = isLiked ? '❤️ 0' : '❤️ 1';
+            element.style.color = isLiked ? 'inherit' : 'var(--accent)';
+        }
+    </script>
+</body>
+
+</html>
