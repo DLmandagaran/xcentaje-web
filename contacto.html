@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Xcentaje</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: radial-gradient(circle at top right, #1a0a14, #0a0a0c);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .contact-header {
+            padding-top: 12rem;
+            padding-bottom: 2rem;
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-bottom: 100px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            animation: slideIn 0.5s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-form {
+            background: var(--glass-bg, rgba(255, 255, 255, 0.03));
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.05));
+            padding: 3rem;
+            border-radius: 24px;
+            transition: 0.3s;
+        }
+
+        .contact-form:focus-within {
+            border-color: var(--accent, #ff007f);
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.15);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary, #a0a0a0);
+            font-family: var(--font-heading, 'Outfit', sans-serif);
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            color: #fff;
+            font-family: var(--font-body, 'Inter', sans-serif);
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent, #ff007f);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .file-upload-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-upload-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 1rem;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: var(--text-secondary, #a0a0a0);
+            background: rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .file-upload-wrapper:hover .file-upload-btn {
+            border-color: var(--accent, #ff007f);
+            color: #fff;
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            padding: 1rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent, #ff007f);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            opacity: 1;
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar scrolled">
+        <div class="container">
+            <div class="logo">Xcentaje<span>.</span></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html#services">Servicios</a></li>
+                    <li><a href="index.html#reports">Informes</a></li>
+                    <li><a href="index.html#projects">Proyectos</a></li>
+                    <li><a href="contacto.html" class="btn-primary">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="contact-header">
+            <h1
+                style="font-size: clamp(2.5rem, 6vw, 4rem); font-family: var(--font-heading); margin-bottom: 1rem; line-height: 1;">
+                Ponte en <span class="accent">Contacto</span>
+            </h1>
+            <p style="color: var(--text-secondary, #a0a0a0); font-size: 1.1rem; max-width: 500px; margin: 0 auto;">
+                Envíanos tu consulta, requerimiento o adjunta tus archivos. Te responderemos a la brevedad.
+            </p>
+        </section>
+
+        <div class="contact-container">
+            <a href="index.html" class="back-btn">
+                <span>←</span> Volver al Inicio
+            </a>
+
+            <!-- Formulaire con enctype para soportar archivos adjuntos -->
+            <form action="https://formsubmit.co/xcentaje1@gmail.com" method="POST" enctype="multipart/form-data"
+                class="contact-form">
+
+                <!-- Redirección luego de enviar -->
+                <input type="hidden" name="_next" value="https://dlmandagaran.github.io/xcentaje-web/">
+                <!-- Desactivar captcha (Opcional, pero da mejor experiencia) -->
+                <input type="hidden" name="_captcha" value="false">
+
+                <div class="form-group">
+                    <label for="name">Tu Nombre o Empresa</label>
+                    <input type="text" id="name" name="name" class="form-control" required placeholder="Ej: Juan Pérez">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Tu Correo Electrónico</label>
+                    <input type="email" id="email" name="email" class="form-control" required
+                        placeholder="ejemplo@correo.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Asunto</label>
+                    <input type="text" id="subject" name="_subject" class="form-control" required
+                        placeholder="Motivo de tu mensaje">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" class="form-control" required
+                        placeholder="¿En qué te podemos ayudar?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Archivo Adjunto (Opcional)</label>
+                    <div class="file-upload-wrapper">
+                        <div class="file-upload-btn" id="file-name-display">
+                            <span>📎</span> Añadir un archivo...
+                        </div>
+                        <input type="file" name="attachment" accept=".pdf,.doc,.docx,.xls,.xlsx,.zip,.png,.jpg"
+                            onchange="document.getElementById('file-name-display').innerHTML = '<span>📄</span> ' + this.files[0].name">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary submit-btn">Enviar Mensaje</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container" style="text-align: center; padding: 4rem 0;">
+            <p>&copy; 2026 Xcentaje.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
